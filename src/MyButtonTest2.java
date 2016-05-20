@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
@@ -28,7 +27,7 @@ public class MyButtonTest2 extends JFrame{
 		setSize(300, 250);
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String args []) {
 		MyButtonTest2 myapp = new MyButtonTest2();
 		myapp.setVisible(true);
 	}
