@@ -4,6 +4,8 @@ import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class MyCanvas extends JPanel {
+	//test
+	int x;
 	private Vector<MyDrawing> drawings;
 	
 	public MyCanvas() {
