@@ -35,45 +35,69 @@ public class MyDrawing {
 	}
 	
 	public void setLocation(int x, int y) {
-		//for changing the position of the object
 		this.x = x;
 		this.y = y;
 	}
 	
 	public void setSize(int w, int h) {
-		//to change the size of the object
 		this.w = w;
 		this.h = h;
 	}
-	
+
 	public int getX() {
-		//to get the value of the x coordinate
-		return this.x;
-		
+		return x;
 	}
-	
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
 	public int getY() {
-		//to get the value of the y coordinate
-		return this.y;
+		return y;
 	}
-	
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
 	public int getW() {
-		return this.w;
+		return w;
 	}
-	
+
+	public void setW(int w) {
+		this.w = w;
+	}
+
 	public int getH() {
-		return this.h;
+		return h;
 	}
-	
+
+	public void setH(int h) {
+		this.h = h;
+	}
+
 	public Color getLineColor() {
-		return this.lineColor;
+		return lineColor;
 	}
-	
+
+	public void setLineColor(Color lineColor) {
+		this.lineColor = lineColor;
+	}
+
 	public Color getFillColor() {
-		return this.fillColor;
+		return fillColor;
+	}
+
+	public void setFillColor(Color fillColor) {
+		this.fillColor = fillColor;
+	}
+
+	public int getLineWidth() {
+		return lineWidth;
+	}
+
+	public void setLineWidth(int lineWidth) {
+		this.lineWidth = lineWidth;
 	}
 	
-	public int getLineWidth() {
-		return this.lineWidth;
-	}
 }

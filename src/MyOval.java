@@ -4,6 +4,11 @@ public class MyOval extends MyDrawing {
 	public MyOval(int xpt, int ypt) {
 		super();
 		setLocation(xpt, ypt);
+		super.setW(2 * super.getH());
+	}
+	
+	public MyOval(int x, int y, int w, int h, Color lineColor, Color fillColor, int lineWidth) {
+		super(x, y, w, h, lineColor, fillColor, lineWidth);
 	}
 	
 	public void draw(Graphics g) {

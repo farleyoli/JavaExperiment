@@ -12,8 +12,13 @@ public class MyApplication extends JFrame {
 		this.getContentPane().add(jp); //adds the jpanel jp to this jframe
 		
 		MyCanvas canvas = new MyCanvas(); //jpanel
-		for(int i = 0; i < 8; i++) {
-			canvas.addDrawing(new MyStar(20 + i * 80, 20 + i * 60));
+		for(int i = 0; i <= 8; i++) {
+			if(i % 3 == 0)
+				canvas.addDrawing(new MyString("実験Java", 20 + i*80, 20 + i * 60));
+			if(i % 3 == 1)
+				canvas.addDrawing(new MyOval(20 + i * 80, 20 + i * 60, 200, 200, Color.blue, Color.red, 1));
+			if(i % 3 == 2)
+				canvas.addDrawing(new MyStar(20 + i*80, 20 + i * 60));
 		}
 		jp.add(BorderLayout.CENTER, canvas);
 	

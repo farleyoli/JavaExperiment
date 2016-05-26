@@ -6,6 +6,10 @@ public class MyStar extends MyDrawing {
 		setLocation(xpt, ypt);
 	}
 	
+	public MyStar(int x, int y, int w, int h, Color lineColor, Color fillColor, int lineWidth) {
+		super(x, y, w, h, lineColor, fillColor, lineWidth);
+	}
+	
 	public void draw(Graphics g) {
 		int x = getX();
 		int y = getY();
@@ -14,7 +18,6 @@ public class MyStar extends MyDrawing {
 		
 		int[] xPoints = new int[11];
 		int[] yPoints = new int[11];
-		double radius =  w / 2.0;
 		
 		//if the width or height is a negative number
 		if(w < 0) {
@@ -26,15 +29,16 @@ public class MyStar extends MyDrawing {
 			y += h;
 			h *= -1;
 		}
+		double radius = w / 2.0;
 		
 		double x1, y1;
 		double x2, y2;
 		for(int k = 0; k <= 5; k++) {
-			x1 = radius * Math.cos((Math.PI / 2) + (2 * Math.PI * k / 5));
+			x1 = radius * Math.cos((Math.PI / 2.0) + (2 * Math.PI * k / 5));
 			x2 = (x1 + (w / 2.0));  
 			xPoints[2 * k] = (int) (x + x2);
 			
-			y1 = radius * (Math.sin((Math.PI / 2) + (2 * Math.PI * k / 5) ));
+			y1 = - radius * (Math.sin((Math.PI / 2) + (2 * Math.PI * k / 5) ));
 			y2 = (y1 + (h / 2.0));  
 			yPoints[2 * k] = (int) (y + y2);
 		}
@@ -46,7 +50,7 @@ public class MyStar extends MyDrawing {
 			x2 = (x1 + (w / 2.0));  
 			xPoints[2 * k + 1] = (int) (x + x2);
 			
-			y1 = radius2 * (Math.sin((3 * Math.PI / 4) + (2 * Math.PI * k / 5) ));
+			y1 = - radius2 * (Math.sin((3 * Math.PI / 4) + (2 * Math.PI * k / 5) ));
 			y2 = (y1 + (h / 2.0));  
 			yPoints[2 * k + 1] = (int) (y + y2);
 		}
