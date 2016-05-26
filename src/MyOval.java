@@ -29,7 +29,18 @@ public class MyOval extends MyDrawing {
 		}
 		
 		Graphics2D g2 = (Graphics2D) g;
-		g2.setStroke(new BasicStroke(getLineWidth()));
+		if(getDashed()) 
+			g2.setStroke(new MyDashStroke(getLineWidth()));
+		else
+			g2.setStroke(new BasicStroke(getLineWidth()));
+		
+		//kadai3
+		if(isShadowed()) {
+			g2.setColor(Color.black);
+			g2.fillOval(x + 10, y + 10, w, h);
+			g2.drawOval(x + 10, y + 10, w, h);	
+		}
+		
 		g2.setColor(getFillColor());
 		g2.fillOval(x, y, w, h);
 		g2.setColor(getLineColor());

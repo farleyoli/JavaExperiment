@@ -9,7 +9,15 @@ public class MyStar extends MyDrawing {
 	public MyStar(int x, int y, int w, int h, Color lineColor, Color fillColor, int lineWidth) {
 		super(x, y, w, h, lineColor, fillColor, lineWidth);
 	}
-	
+//	
+//	public void setW(int w) {
+//		
+//	}
+//	
+//	public void setH(int h) {
+//		
+//	}
+//	
 	public void draw(Graphics g) {
 		int x = getX();
 		int y = getY();
@@ -38,7 +46,7 @@ public class MyStar extends MyDrawing {
 			x2 = (x1 + (w / 2.0));  
 			xPoints[2 * k] = (int) (x + x2);
 			
-			y1 = - radius * (Math.sin((Math.PI / 2) + (2 * Math.PI * k / 5) ));
+			y1 = radius * (Math.sin((Math.PI / 2) + (2 * Math.PI * k / 5) ));
 			y2 = (y1 + (h / 2.0));  
 			yPoints[2 * k] = (int) (y + y2);
 		}
@@ -50,16 +58,30 @@ public class MyStar extends MyDrawing {
 			x2 = (x1 + (w / 2.0));  
 			xPoints[2 * k + 1] = (int) (x + x2);
 			
-			y1 = - radius2 * (Math.sin((3 * Math.PI / 4) + (2 * Math.PI * k / 5) ));
+			y1 = radius2 * (Math.sin((3 * Math.PI / 4) + (2 * Math.PI * k / 5) ));
 			y2 = (y1 + (h / 2.0));  
 			yPoints[2 * k + 1] = (int) (y + y2);
 		}
 		
 		
-		
-		
 		Graphics2D g2 = (Graphics2D) g;
-		g2.setStroke(new BasicStroke(getLineWidth()));
+		if(getDashed()) 
+			g2.setStroke(new MyDashStroke(getLineWidth()));
+		else
+			g2.setStroke(new BasicStroke(getLineWidth()));
+		
+		//kadai3
+		if(isShadowed()) {
+			int[] xPoints2 = new int[xPoints.length], yPoints2 = new int[yPoints.length];
+			for(int i = 0; i < xPoints.length; i++)
+				xPoints2[i] = xPoints[i] + 10;
+			for(int i = 0; i < yPoints.length; i++)
+				yPoints2[i] = yPoints[i] + 10;
+			g2.setColor(Color.black);
+			g2.fillPolygon(xPoints2, yPoints2, xPoints2.length);
+			g2.drawPolygon(xPoints2, yPoints2, xPoints2.length);
+		}
+		
 		g2.setColor(getFillColor());
 		g2.fillPolygon(xPoints, yPoints, xPoints.length);
 		g2.setColor(getLineColor());

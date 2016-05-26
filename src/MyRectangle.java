@@ -6,6 +6,10 @@ public class MyRectangle extends MyDrawing {
 		setLocation(xpt, ypt);
 	}
 	
+	public MyRectangle(int x, int y, int w, int h, Color lineColor, Color fillColor, int lineWidth) {
+		super(x, y, w, h, lineColor, fillColor, lineWidth);
+	}
+	
 	public void draw(Graphics g) {
 		int x = getX();
 		int y = getY();
@@ -24,10 +28,24 @@ public class MyRectangle extends MyDrawing {
 		}
 		
 		Graphics2D g2 = (Graphics2D) g;
-		g2.setStroke(new BasicStroke(getLineWidth()));
+		
+		if(getDashed()) 
+			g2.setStroke(new MyDashStroke(getLineWidth()));
+		else
+			g2.setStroke(new BasicStroke(getLineWidth()));
+		
+		//kadai3
+		if(isShadowed()) {
+			g2.setColor(Color.black);
+			g2.fillRect(x + 10, y + 10, w, h);
+			g2.drawRect(x + 10, y + 10, w, h);
+			
+		}
+		
 		g2.setColor(getFillColor());
 		g2.fillRect(x, y, w, h);
 		g2.setColor(getLineColor());
 		g2.drawRect(x, y, w, h);
+		
 	}
 }

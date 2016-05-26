@@ -5,6 +5,21 @@ public class MyDrawing {
 	private Color lineColor, fillColor;
 	private int lineWidth;
 	
+	private boolean isDashed = false;
+	private boolean isShadowed = false;
+	
+	public boolean isShadowed() {
+		return isShadowed;
+	}
+
+	public void setShadowed(boolean isShadowed) {
+		this.isShadowed = isShadowed;
+	}
+
+	public boolean isDashed() {
+		return isDashed;
+	}
+
 	public MyDrawing() {
 		x = y = 0;
 		w = 200;
@@ -64,6 +79,7 @@ public class MyDrawing {
 		return w;
 	}
 
+	//kadai2
 	public void setW(int w) {
 		this.w = w;
 	}
@@ -98,6 +114,14 @@ public class MyDrawing {
 
 	public void setLineWidth(int lineWidth) {
 		this.lineWidth = lineWidth;
+	}
+
+	public boolean getDashed() {
+		return isDashed;
+	}
+
+	public void setDashed(boolean isDashed) {
+		this.isDashed = isDashed;
 	}
 	
 }
