@@ -29,7 +29,7 @@ class OvalState extends State {
 	}
 	
 	public void mouseDown(int x, int y) {
-		stateManager.addDrawing(new MyOval(x, y));
+		stateManager.addDrawing(new MyOval(x, y, 0, 0, Color.black, Color.white, 1));
 	}
 	
 	public void mouseUp(int x, int y){}

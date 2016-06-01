@@ -15,6 +15,8 @@ public class MyCheckBoxTest2 extends JFrame {
 		dashCheck.addItemListener(new DashCheckListener());
 		jp.add(dashCheck);
 		
+		//test to merge
+		
 		JCheckBox boldCheck = new JCheckBox("bold line");
 		boldCheck.addItemListener(new BoldCheckListener());
 		jp.add(boldCheck);
