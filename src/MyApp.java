@@ -2,7 +2,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-
 @SuppressWarnings("serial")
 public class MyApp extends JFrame {
 	StateManager stateManager;
@@ -27,9 +26,10 @@ public class MyApp extends JFrame {
 		jp.add(starButton);
 		StringButton stringButton = new StringButton(stateManager);
 		jp.add(stringButton);
-		//kadai3
 		ShadowedButton shadowedButton = new ShadowedButton(stateManager);
 		jp.add(shadowedButton);
+		SelectedButton selectedButton = new SelectedButton(stateManager);
+		jp.add(selectedButton);
 		
 		
 		getContentPane().setLayout(new BorderLayout());
@@ -42,14 +42,11 @@ public class MyApp extends JFrame {
 			}
 		});
 		
-		//kadai2
 		canvas.addMouseMotionListener(new MouseAdapter() {
 			public void mouseDragged(MouseEvent e) {
 				stateManager.mouseDragged(e.getX(), e.getY());
 			}
 		});
-		//kadai2
-		
 		
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -61,6 +58,7 @@ public class MyApp extends JFrame {
 	public static void main(String[] args) {
 		MyApp app = new MyApp();
 		app.pack();
+		app.setSize(1000, 1000);
 		app.setVisible(true);
 	}
 }

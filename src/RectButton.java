@@ -16,7 +16,6 @@ public class RectButton extends JButton {
 			stateManager.setState(new RectState(stateManager));
 		}
 	}
-
 }
 
 class RectState extends State {
@@ -27,15 +26,17 @@ class RectState extends State {
 	}
 	
 	public void mouseDown(int x, int y) {
-		//kadai2
-		//MyRectangle myRectangle = new MyRectangle(x, y);
-		MyRectangle myRectangle = new MyRectangle(x, y, 0, 0, Color.black, Color.white, 1);
-		stateManager.addDrawing(myRectangle);
+		if(stateManager.isSelected()) {
+						
+		} 
+		else {
+			MyRectangle myRectangle = new MyRectangle(x, y, 0, 0, Color.black, Color.white, 1);
+			stateManager.addDrawing(myRectangle); 
+		}
 	}
 	
 	public void mouseUp(int x, int y){}
 	public void mouseDrag(int x, int y) {
-		//kadai2
 		int x0 = stateManager.getMyDrawing().getX();
 		int y0 = stateManager.getMyDrawing().getY();
 		int w = x - x0, h = y - y0;

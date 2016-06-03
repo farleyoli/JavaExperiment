@@ -2,7 +2,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-//kadai3
 @SuppressWarnings("serial")
 public class ShadowedButton extends JButton {
 	StateManager stateManager;

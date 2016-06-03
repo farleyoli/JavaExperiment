@@ -34,7 +34,6 @@ class StarState extends State {
 	
 	public void mouseUp(int x, int y){}
 	public void mouseDrag(int x, int y) {
-		//kadai2
 		int x0 = stateManager.getMyDrawing().getX();
 		int y0 = stateManager.getMyDrawing().getY();
 		int w = x - x0, h = y - y0;

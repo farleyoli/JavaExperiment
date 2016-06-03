@@ -8,6 +8,7 @@ public class MyRectangle extends MyDrawing {
 	
 	public MyRectangle(int x, int y, int w, int h, Color lineColor, Color fillColor, int lineWidth) {
 		super(x, y, w, h, lineColor, fillColor, lineWidth);
+		setRegion();
 	}
 	
 	public void draw(Graphics g) {
@@ -34,7 +35,6 @@ public class MyRectangle extends MyDrawing {
 		else
 			g2.setStroke(new BasicStroke(getLineWidth()));
 		
-		//kadai3
 		if(isShadowed()) {
 			g2.setColor(Color.black);
 			g2.fillRect(x + 10, y + 10, w, h);
@@ -47,5 +47,6 @@ public class MyRectangle extends MyDrawing {
 		g2.setColor(getLineColor());
 		g2.drawRect(x, y, w, h);
 		
+		super.draw(g);
 	}
 }

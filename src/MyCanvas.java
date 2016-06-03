@@ -4,26 +4,36 @@ import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class MyCanvas extends JPanel {
-	private Vector<MyDrawing> drawings;
+	private Mediator mediator;
 	
 	public MyCanvas() {
+		this.mediator = new Mediator(this);
 		setBackground(Color.white);
-		
-		drawings = new Vector<MyDrawing>();
 	}
 	
 	public void paint( Graphics g ) {
 		super.paint(g);
-		for(MyDrawing d : drawings) {
+		
+		Enumeration<MyDrawing> e = mediator.drawingsElements();
+		while(e.hasMoreElements()) {
+			MyDrawing d = e.nextElement();
 			d.draw(g);
 		}
 	}
 	
+	public Mediator getMediator() {
+		return mediator;
+	}
+	
 	public void addDrawing(MyDrawing d) {
-		drawings.add(d);
+		mediator.addDrawing(d);
 	}
 	
 	public void removeDrawing(MyDrawing d) {
-		drawings.remove(d);
+		mediator.removeDrawing(d);
+	}
+
+	public void setMediator(Mediator mediator) {
+		this.mediator = mediator;
 	}
 }

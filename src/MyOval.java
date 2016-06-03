@@ -9,6 +9,7 @@ public class MyOval extends MyDrawing {
 	
 	public MyOval(int x, int y, int w, int h, Color lineColor, Color fillColor, int lineWidth) {
 		super(x, y, w, h, lineColor, fillColor, lineWidth);
+		setRegion();
 	}
 	
 	public void draw(Graphics g) {
@@ -45,5 +46,6 @@ public class MyOval extends MyDrawing {
 		g2.fillOval(x, y, w, h);
 		g2.setColor(getLineColor());
 		g2.drawOval(x, y, w, h);
+		super.draw(g);
 	}
 }

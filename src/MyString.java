@@ -33,6 +33,7 @@ public class MyString extends MyDrawing {
 			g2.setStroke(new BasicStroke(getLineWidth()));
 			g2.setColor(getLineColor());
 			g2.drawString(str, x, y);
+			super.draw(g);
 		}
 		
 

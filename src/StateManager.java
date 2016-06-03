@@ -3,8 +3,8 @@ public class StateManager {
 	private MyCanvas canvas;
 	MyDrawing myDrawing;
 	private boolean isDashed;
-	//kadai3
 	private boolean isShadowed;
+	private boolean isSelected;
 	
 
 	public StateManager(MyCanvas canvas) {
@@ -16,10 +16,12 @@ public class StateManager {
 		if(isDashed())
 			myDrawing.setDashed(true);
 		else myDrawing.setDashed(false);
-		//kadai3
 		if(isShadowed())
 			myDrawing.setShadowed(true);
 		else myDrawing.setShadowed(false);
+		if(isSelected())
+			myDrawing.setSelected(true);
+		else myDrawing.setSelected(false);
 		canvas.addDrawing(myDrawing);
 		canvas.repaint();
 	}
@@ -31,8 +33,7 @@ public class StateManager {
 	public void setShadowed(boolean isShadowed) {
 		this.isShadowed = isShadowed;
 	}
-
-	//kadai2
+	
 	public void repaint() {
 		canvas.repaint();
 	}
@@ -70,12 +71,20 @@ public class StateManager {
 	}
 
 	public void mouseDown(int x, int y) {
-		state.mouseDown(x, y);
+		if(state != null)
+			state.mouseDown(x, y);
 	}
 	
-	//kadai2
 	public void mouseDragged(int x, int y) {
-		state.mouseDrag(x, y);
+		if(state != null)
+			state.mouseDrag(x, y);
 	}
-	//KADAI2
+
+	public boolean isSelected() {
+		return isSelected;
+	}
+
+	public void setSelected(boolean isSelected) {
+		this.isSelected = isSelected;
+	}
 }
