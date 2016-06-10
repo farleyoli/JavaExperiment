@@ -1,5 +1,6 @@
 import java.util.Enumeration;
 import java.util.Vector;
+import java.awt.*;
 
 public class Mediator {
 	Vector<MyDrawing> drawings;
@@ -60,6 +61,13 @@ public class Mediator {
 
 	public void setCanvas(MyCanvas canvas) {
 		this.canvas = canvas;
+	}
+	
+	public void setColor(Color color) {
+		if(selectedDrawing != null) {
+			selectedDrawing.setFillColor(color);
+		}
+		repaint();
 	}
 
 }
