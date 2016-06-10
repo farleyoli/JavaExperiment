@@ -24,8 +24,8 @@ public class MyApp extends JFrame {
 		jp.add(ovalButton);
 		StarButton starButton = new StarButton(stateManager);
 		jp.add(starButton);
-		StringButton stringButton = new StringButton(stateManager);
-		jp.add(stringButton);
+//		StringButton stringButton = new StringButton(stateManager);
+//		jp.add(stringButton);
 		ShadowedButton shadowedButton = new ShadowedButton(stateManager);
 		jp.add(shadowedButton);
 		SelectedButton selectedButton = new SelectedButton(stateManager);

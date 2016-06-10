@@ -2,6 +2,7 @@ import java.awt.*;
 
 public class MyDrawing {
 	private int x, y, w, h; //coordinates, width, height
+	private int x0, y0;
 	private Color lineColor, fillColor;
 	private int lineWidth;
 	
@@ -72,6 +73,21 @@ public class MyDrawing {
 	}
 	
 	public void setRegion() {
+		int x = getX();
+		int y = getY();
+		int w = getW();
+		int h = getH();
+		
+		//if the width or height is a negative number
+		if(w < 0) {
+			x += w;
+			w *= -1;
+		}
+		
+		if(h < 0) {
+			y += h;
+			h *= -1;
+		}
 		this.region = new Rectangle(x, y, w, h);
 	}
 	
@@ -179,6 +195,22 @@ public class MyDrawing {
 
 	public int getSIZE() {
 		return SIZE;
+	}
+
+	public int getX0() {
+		return x0;
+	}
+
+	public void setX0(int x0) {
+		this.x0 = x0;
+	}
+
+	public int getY0() {
+		return y0;
+	}
+
+	public void setY0(int y0) {
+		this.y0 = y0;
 	}
 	
 }
