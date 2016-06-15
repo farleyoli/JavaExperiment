@@ -1,4 +1,4 @@
-	import java.awt.event.*;
+import java.awt.event.*;
 
 import javax.swing.*;
 
@@ -36,7 +36,6 @@ class SelectedState extends State {
 			drawing.setSelected(false);
 		}
 		
-		
 		for(MyDrawing drawing : vecD) {
 			if(drawing.contains(x, y)) {
 				drawing.changeSelected();
@@ -51,6 +50,8 @@ class SelectedState extends State {
 	
 	public void mouseUp(int x, int y){}
 	public void mouseDrag(int x, int y) {
+		if(stateManager.getCanvas().getMediator().getSelectedDrawing() == null)
+			return;
 		MyDrawing drawing = stateManager.getCanvas().getMediator().getSelectedDrawing();
 		if(drawing.contains(x,y)) {
 			int dx = x - drawing.getX0();

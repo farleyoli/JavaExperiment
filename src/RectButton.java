@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
@@ -31,7 +32,19 @@ class RectState extends State {
 		} 
 		else {
 			MyRectangle myRectangle = new MyRectangle(x, y, 0, 0, Color.black, Color.white, 1);
-			stateManager.addDrawing(myRectangle); 
+			
+			Vector<MyDrawing> vecD = new Vector<MyDrawing>(stateManager.getCanvas().getMediator().getDrawings());
+			//select only one of the figures
+			for(MyDrawing drawing : vecD) {
+				drawing.setSelected(false);
+			}
+			
+			stateManager.addDrawing(myRectangle);
+			myRectangle.setSelected(true);
+			stateManager.getCanvas().getMediator().setSelectedDrawing(myRectangle);
+			
+			stateManager.repaint();
+			
 		}
 	}
 	

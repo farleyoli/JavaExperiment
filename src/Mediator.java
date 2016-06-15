@@ -23,6 +23,16 @@ public class Mediator {
 	
 	public void removeDrawing(MyDrawing d) {
 		drawings.remove(d);
+		selectedDrawing = null;
+		repaint();
+	}
+	
+	public void removeDrawing() {
+		if(selectedDrawing != null) {
+			drawings.remove(selectedDrawing);
+			selectedDrawing = null;
+		}
+		repaint();
 	}
 	
 	public MyDrawing getSelectedDrawing() {
@@ -64,10 +74,32 @@ public class Mediator {
 	}
 	
 	public void setColor(Color color) {
-		if(selectedDrawing != null) {
+		if(selectedDrawing != null && selectedDrawing.isSelected() != false) {
 			selectedDrawing.setFillColor(color);
 		}
 		repaint();
 	}
+	
+	public void setLineColor(Color color) {
+		if(selectedDrawing != null && selectedDrawing.isSelected() != false) {
+			selectedDrawing.setLineColor(color);
+		}
+		repaint();
+	}
+	
+	public void setLineWidth(int width) {
+		if(selectedDrawing != null && selectedDrawing.isSelected() != false) {
+			selectedDrawing.setLineWidth(width);
+		}
+		repaint();
+	}
+	
+	public void setShadowed(boolean isShadowed) {
+		if(selectedDrawing != null && selectedDrawing.isSelected() != false) {
+			selectedDrawing.setShadowed(isShadowed);
+		}
+		repaint();
+	}
+	
 
 }

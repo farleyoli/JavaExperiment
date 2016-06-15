@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.*;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -18,7 +19,6 @@ public class OvalButton extends JButton {
 			stateManager.setState(new OvalState(stateManager));
 		}
 	}
-
 }
 
 class OvalState extends State {
@@ -29,7 +29,21 @@ class OvalState extends State {
 	}
 	
 	public void mouseDown(int x, int y) {
-		stateManager.addDrawing(new MyOval(x, y, 0, 0, Color.black, Color.white, 1));
+		MyOval myOval = new MyOval(x, y, 0, 0, Color.black, Color.white, 1);
+		
+		Vector<MyDrawing> vecD = new Vector<MyDrawing>(stateManager.getCanvas().getMediator().getDrawings());
+		//select only one of the figures
+		for(MyDrawing drawing : vecD) {
+			drawing.setSelected(false);
+		}
+			
+		stateManager.addDrawing(myOval);
+		myOval.setSelected(true);
+		stateManager.getCanvas().getMediator().setSelectedDrawing(myOval);
+			
+		stateManager.repaint();
+		
+		
 	}
 	
 	public void mouseUp(int x, int y){}

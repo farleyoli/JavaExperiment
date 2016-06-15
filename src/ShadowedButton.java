@@ -13,7 +13,9 @@ public class ShadowedButton extends JButton {
 	
 	class ShadowedListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			stateManager.setShadowed(!stateManager.isShadowed());
+			Mediator med = stateManager.getCanvas().getMediator();
+			if(med.getSelectedDrawing() != null)
+				med.setShadowed(!med.getSelectedDrawing().isShadowed());
 		}
 	}
 

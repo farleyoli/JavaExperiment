@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.*;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -29,7 +30,19 @@ class StarState extends State {
 	}
 	
 	public void mouseDown(int x, int y) {
-		stateManager.addDrawing(new MyStar(x, y, 0, 0, Color.black, Color.white, 1));
+		MyStar myStar = new MyStar(x, y, 0, 0, Color.black, Color.white, 1);
+		Vector<MyDrawing> vecD = new Vector<MyDrawing>(stateManager.getCanvas().getMediator().getDrawings());
+		//select only one of the figures
+		for(MyDrawing drawing : vecD) {
+			drawing.setSelected(false);
+		}
+		stateManager.addDrawing(myStar);
+		myStar.setSelected(true);
+		stateManager.getCanvas().getMediator().setSelectedDrawing(myStar);
+			
+		stateManager.repaint();
+		
+		
 	}
 	
 	public void mouseUp(int x, int y){}
