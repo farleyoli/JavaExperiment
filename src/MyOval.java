@@ -12,6 +12,11 @@ public class MyOval extends MyDrawing {
 		setRegion();
 	}
 	
+	public MyOval clone() {
+		return new MyOval(getX(), getY(), getW(), getH(),
+				getLineColor(), getFillColor(), getLineWidth());
+	}
+	
 	public void draw(Graphics g) {
 		int x = getX();
 		int y = getY();

@@ -11,6 +11,11 @@ public class MyStar extends MyDrawing {
 		setRegion();
 	}
 	
+	public MyStar clone() {
+		return new MyStar(getX(), getY(), getW(), getH(),
+				getLineColor(), getFillColor(), getLineWidth());
+	}
+	
 	public void draw(Graphics g) {
 		int x = getX();
 		int y = getY();

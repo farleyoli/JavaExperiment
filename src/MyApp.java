@@ -42,7 +42,12 @@ public class MyApp extends JFrame implements ActionListener {
 		jp.add(selectedButton);
 		DeleteButton deleteButton = new DeleteButton(stateManager);
 		jp.add(deleteButton);
-		
+		CopyButton copyButton = new CopyButton(stateManager);
+		jp.add(copyButton);
+		CutButton cutButton = new CutButton(stateManager);
+		jp.add(cutButton);
+		PasteButton pasteButton = new PasteButton(stateManager);
+		jp.add(pasteButton);
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		

@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class MyDrawing {
+public class MyDrawing implements Cloneable{
 	private int x, y, w, h; //coordinates, width, height
 	private int x0, y0;
 	private Color lineColor, fillColor;
@@ -42,6 +42,11 @@ public class MyDrawing {
 		this.fillColor = fillColor;
 		this.lineWidth = lineWidth;
 		setRegion();
+	}
+	
+	public MyDrawing clone() {
+		MyDrawing clone = new MyDrawing(x, y, w, h, lineColor, fillColor, lineWidth);
+		return clone;
 	}
 	
 	public void draw(Graphics g) {
@@ -90,6 +95,7 @@ public class MyDrawing {
 		}
 		this.region = new Rectangle(x, y, w, h);
 	}
+	
 	
 	public void setLocation(int x, int y) {
 		this.x = x;

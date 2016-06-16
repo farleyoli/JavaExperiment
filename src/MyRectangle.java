@@ -11,6 +11,11 @@ public class MyRectangle extends MyDrawing {
 		setRegion();
 	}
 	
+	public MyRectangle clone() {
+		return new MyRectangle(getX(), getY(), getW(), getH(),
+				getLineColor(), getFillColor(), getLineWidth());
+	}
+	
 	public void draw(Graphics g) {
 		int x = getX();
 		int y = getY();
