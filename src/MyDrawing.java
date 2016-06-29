@@ -46,6 +46,10 @@ public class MyDrawing implements Cloneable{
 	
 	public MyDrawing clone() {
 		MyDrawing clone = new MyDrawing(x, y, w, h, lineColor, fillColor, lineWidth);
+		if(this.isShadowed())
+			clone.setShadowed(true);
+		if(this.isDashed())
+			clone.setDashed(true);
 		return clone;
 	}
 	

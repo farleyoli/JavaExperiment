@@ -12,8 +12,13 @@ public class MyRectangle extends MyDrawing {
 	}
 	
 	public MyRectangle clone() {
-		return new MyRectangle(getX(), getY(), getW(), getH(),
+		MyRectangle clone = new MyRectangle(getX(), getY(), getW(), getH(),
 				getLineColor(), getFillColor(), getLineWidth());
+		if(this.isShadowed())
+			clone.setShadowed(true);
+		if(this.isDashed())
+			clone.setDashed(true);
+		return clone;
 	}
 	
 	public void draw(Graphics g) {

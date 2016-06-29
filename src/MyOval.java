@@ -13,8 +13,13 @@ public class MyOval extends MyDrawing {
 	}
 	
 	public MyOval clone() {
-		return new MyOval(getX(), getY(), getW(), getH(),
+		MyOval clone = new MyOval(getX(), getY(), getW(), getH(),
 				getLineColor(), getFillColor(), getLineWidth());
+		if(this.isShadowed())
+			clone.setShadowed(true);
+		if(this.isDashed())
+			clone.setDashed(true);
+		return clone;
 	}
 	
 	public void draw(Graphics g) {

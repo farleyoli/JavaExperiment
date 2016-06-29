@@ -1,39 +1,60 @@
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.Vector;
 import java.awt.*;
 
 public class Mediator {
 	Vector<MyDrawing> drawings;
 	MyCanvas canvas;
-	MyDrawing selectedDrawing = null;
-	MyDrawing buffer = null; // buffer for copying and cutting
+	Vector<MyDrawing> selectedDrawings = null; //vector to save the current selected drawings
+	Vector<MyDrawing> buffer = null; // buffer for copying and cutting
 	
 	public Mediator(MyCanvas canvas) {
 		this.canvas = canvas;
 		drawings = new Vector<MyDrawing>();
+		selectedDrawings = new Vector<MyDrawing>();
+		buffer = new Vector<MyDrawing>();
 	}
 	
 	public void clearBuffer() {
-		buffer = null;
+		buffer.clear();
+	}
+	
+	public void clearSelectedDrawings() {
+		for(MyDrawing d : selectedDrawings)
+			d.setSelected(false);
+		selectedDrawings.clear(); 
 	}
 	
 	public void copy() {
 		clearBuffer();
-		buffer = selectedDrawing.clone();
+		for(MyDrawing d : selectedDrawings)
+			buffer.addElement(d.clone());
 	}
 	
 	public void cut() {
 		clearBuffer();
-		buffer = selectedDrawing.clone();
-		removeDrawing(selectedDrawing); // delete selectedDrawing from drawings
+		if(selectedDrawings.size() > 0) {
+			int size = selectedDrawings.size();
+			for(int i = size - 1; i >= 0; i--) {
+				MyDrawing d = selectedDrawings.elementAt(i);
+				buffer.addElement(d.clone());
+				removeDrawing(d); // delete selectedDrawing from drawings
+				selectedDrawings.remove(d);
+			}
+		}
 	}
 	
-	public void paste(int x, int y)
-	{
-	  MyDrawing clone = (MyDrawing) buffer.clone();
-	  clone.setLocation(x - (clone.getW()/2), y - (clone.getH()/2));
-	  addDrawing(clone);
-	  repaint();
+	public void paste(int x, int y) {
+		if(buffer.size() > 0) {
+			for(MyDrawing d : buffer) {
+				MyDrawing clone = d.clone();
+				clone.setLocation(x - (clone.getW()/2), y - (clone.getH()/2));
+				addDrawing(clone);
+				setSelectedDrawing(clone);
+			}
+		}
+		repaint();
 	}
 	
 	public Enumeration<MyDrawing> drawingsElements() {
@@ -47,25 +68,30 @@ public class Mediator {
 	
 	public void removeDrawing(MyDrawing d) {
 		drawings.remove(d);
-		selectedDrawing = null;
+		clearSelectedDrawings();
 		repaint();
 	}
 	
 	public void removeDrawing() {
-		if(selectedDrawing != null) {
-			drawings.remove(selectedDrawing);
-			selectedDrawing = null;
+		if(selectedDrawings.size() > 0) {
+			for(MyDrawing d : selectedDrawings) 
+				drawings.remove(d);
+			clearSelectedDrawings();
 		}
 		repaint();
 	}
 	
 	public MyDrawing getSelectedDrawing() {
-		return selectedDrawing;
+		//for the time being, this will return the first one in the list
+		if(selectedDrawings.size() > 0)
+			return selectedDrawings.firstElement();
+		else return null;
 	}
 	
 	public void move(int dx, int dy) {
-		if (selectedDrawing != null)
-			selectedDrawing.move(dx, dy);
+		for(MyDrawing d : selectedDrawings) {
+			d.move(dx, dy);
+		}
 	}
 	
 	public void repaint() {
@@ -73,12 +99,17 @@ public class Mediator {
 	}
 	
 	public void setSelected(int x, int y) {
-		selectedDrawing.setX(x);
-		selectedDrawing.setY(y);
+		for(MyDrawing d : selectedDrawings) {
+			d.setX(x);
+			d.setY(y);
+		}
 	}
 	
 	public void setSelectedDrawing(MyDrawing d) {
-		selectedDrawing = d;
+		clearSelectedDrawings();
+		selectedDrawings.add(d);
+		d.setSelected(true);
+		repaint();
 	}
 
 	public Vector<MyDrawing> getDrawings() {
@@ -98,32 +129,39 @@ public class Mediator {
 	}
 	
 	public void setColor(Color color) {
-		if(selectedDrawing != null && selectedDrawing.isSelected() != false) {
-			selectedDrawing.setFillColor(color);
+		for(MyDrawing d : selectedDrawings) {
+			if(d != null && d.isSelected() != false) {
+				d.setFillColor(color);
+			}
 		}
 		repaint();
 	}
 	
 	public void setLineColor(Color color) {
-		if(selectedDrawing != null && selectedDrawing.isSelected() != false) {
-			selectedDrawing.setLineColor(color);
+		for(MyDrawing d : selectedDrawings) {
+			if(d != null && d.isSelected() != false) {
+				d.setLineColor(color);
+			}
 		}
 		repaint();
 	}
 	
 	public void setLineWidth(int width) {
-		if(selectedDrawing != null && selectedDrawing.isSelected() != false) {
-			selectedDrawing.setLineWidth(width);
+		for(MyDrawing d : selectedDrawings) {
+			if(d != null && d.isSelected() != false) {
+				d.setLineWidth(width);
+			}
 		}
 		repaint();
 	}
 	
 	public void setShadowed(boolean isShadowed) {
-		if(selectedDrawing != null && selectedDrawing.isSelected() != false) {
-			selectedDrawing.setShadowed(isShadowed);
+		for(MyDrawing d : selectedDrawings) {
+			if(d != null && d.isSelected() != false) {
+				d.setShadowed(isShadowed);
+			}
 		}
 		repaint();
 	}
-	
 
 }

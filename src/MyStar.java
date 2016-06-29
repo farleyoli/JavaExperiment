@@ -12,8 +12,13 @@ public class MyStar extends MyDrawing {
 	}
 	
 	public MyStar clone() {
-		return new MyStar(getX(), getY(), getW(), getH(),
+		MyStar clone = new MyStar(getX(), getY(), getW(), getH(),
 				getLineColor(), getFillColor(), getLineWidth());
+		if(this.isShadowed())
+			clone.setShadowed(true);
+		if(this.isDashed())
+			clone.setDashed(true);
+		return clone;
 	}
 	
 	public void draw(Graphics g) {
