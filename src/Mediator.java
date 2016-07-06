@@ -46,12 +46,17 @@ public class Mediator {
 	}
 	
 	public void paste(int x, int y) {
+		unselectAll();
 		if(buffer.size() > 0) {
+			int x0 = buffer.lastElement().getX();
+			int y0 = buffer.lastElement().getY();
 			for(MyDrawing d : buffer) {
+				int dx = d.getX() - x0;
+				int dy = d.getY() - y0;
 				MyDrawing clone = d.clone();
-				clone.setLocation(x - (clone.getW()/2), y - (clone.getH()/2));
-				addDrawing(clone);
-				setSelectedDrawing(clone);
+				clone.setLocation(x - (clone.getW()/2) + dx, y - (clone.getH()/2) + dy);
+				addDrawing2(clone);
+				setSelected(clone);
 			}
 		}
 		repaint();
@@ -66,9 +71,13 @@ public class Mediator {
 		setSelectedDrawing(d);
 	}
 	
+	public void addDrawing2(MyDrawing d) { //add figure not unselecting the ones before
+		drawings.add(d);
+		setSelected(d);
+	}
 	public void removeDrawing(MyDrawing d) {
 		drawings.remove(d);
-		clearSelectedDrawings();
+		selectedDrawings.remove(d);
 		repaint();
 	}
 	
@@ -81,11 +90,25 @@ public class Mediator {
 		repaint();
 	}
 	
+	public void unselectAll() {
+		//unselect all selected figures
+		if(selectedDrawings.size() > 0) {
+			for(MyDrawing d : selectedDrawings) {
+				d.setSelected(false);
+			}
+			selectedDrawings.clear();
+		}
+	}
+	
 	public MyDrawing getSelectedDrawing() {
-		//for the time being, this will return the first one in the list
+		//for the time being, this will return the last one in the selectedDrawings list
 		if(selectedDrawings.size() > 0)
-			return selectedDrawings.firstElement();
+			return selectedDrawings.lastElement();
 		else return null;
+	}
+	
+	public Vector<MyDrawing> getSelectedDrawings() {
+		return selectedDrawings;
 	}
 	
 	public void move(int dx, int dy) {
@@ -109,6 +132,17 @@ public class Mediator {
 		clearSelectedDrawings();
 		selectedDrawings.add(d);
 		d.setSelected(true);
+		//drawings.remove(d);
+		//drawings.add(d);
+		repaint();
+	}
+	
+	public void setSelected(MyDrawing d) {
+		if(!selectedDrawings.contains(d))
+			selectedDrawings.add(d);
+		d.setSelected(true);
+		//drawings.remove(d);
+		//drawings.add(d);
 		repaint();
 	}
 

@@ -57,7 +57,7 @@ public class MyStar extends MyDrawing {
 			yPoints[2 * k] = (int) (y + y2);
 		}
 		
-		double radius2 = radius * (Math.sin(Math.PI / 10) / Math.cos(Math.PI / 4));
+		double radius2 = 1.2 * radius * (Math.sin(Math.PI / 10) / Math.cos(Math.PI / 4));
 		
 		for(int k = 0; k <= 4; k++) {
 			x1 = radius2 * (Math.cos(( 3 * Math.PI / 4) + (2 * Math.PI * k / 5) ));

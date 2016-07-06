@@ -115,6 +115,12 @@ public class MyApp extends JFrame implements ActionListener {
 			}
 		});
 		
+		canvas.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent e) {
+				stateManager.mouseUp(e.getX(), e.getY());
+			}
+		});
+		
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);

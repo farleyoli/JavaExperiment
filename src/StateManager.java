@@ -79,6 +79,11 @@ public class StateManager {
 		if(state != null)
 			state.mouseDrag(x, y);
 	}
+	
+	public void mouseUp(int x, int y) {
+		if(state != null)
+			state.mouseUp(x, y);
+	}
 
 	public boolean isSelected() {
 		return isSelected;
