@@ -102,8 +102,8 @@ public class MyApp extends JFrame implements ActionListener {
 		menuBar.add(lineWidthMenu);
 		
 		IO = new JMenu("Read/Load");
-		read = new IOMenu(stateManager, "Read File");
-		load = new IOMenu(stateManager, "Load File");
+		read = new IOMenu(stateManager, "Load File");
+		load = new IOMenu(stateManager, "Save File");
 		IO.add(read);
 		IO.add(load);
 		menuBar.add(IO);
