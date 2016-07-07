@@ -12,9 +12,11 @@ public class MyApp extends JFrame implements ActionListener {
 	private JMenu colorMenu;
 	private JMenu lineColorMenu;
 	private JMenu lineWidthMenu;
+	private JMenu IO;
 	private JMenuItem redItem, blueItem, greenItem, whiteItem, blackItem, yellowItem, otherFillColor;
 	private JMenuItem lineRed, lineBlue, lineGreen, lineWhite, lineBlack, lineYellow, otherLineColor;
 	private JMenuItem width1, width2, width3, width4, width5, otherWidth;
+	private JMenuItem read, load;
 	
 	public MyApp() {
 		super("My App!");
@@ -98,6 +100,13 @@ public class MyApp extends JFrame implements ActionListener {
 		lineWidthMenu.add(otherWidth);
 		otherWidth.addActionListener(this);
 		menuBar.add(lineWidthMenu);
+		
+		IO = new JMenu("Read/Load");
+		read = new IOMenu(stateManager, "Read File");
+		load = new IOMenu(stateManager, "Load File");
+		IO.add(read);
+		IO.add(load);
+		menuBar.add(IO);
 		
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(jp, BorderLayout.NORTH);
