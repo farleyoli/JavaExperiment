@@ -27,9 +27,16 @@ public class MyApp extends JFrame implements ActionListener {
 		JPanel jp = new JPanel();
 		jp.setLayout(new FlowLayout());
 		
+		JPanel jp2 = new JPanel();
+		jp2.setLayout(new BoxLayout(jp2, BoxLayout.PAGE_AXIS));
+		
+		
+		
 		stateManager = new StateManager(canvas);
 		med = canvas.getMediator();
 		
+		LineButton lineButton = new LineButton(stateManager);
+		jp.add(lineButton);
 		RectButton rectButton = new RectButton(stateManager);
 		jp.add(rectButton);
 		OvalButton ovalButton = new OvalButton(stateManager);
@@ -38,18 +45,24 @@ public class MyApp extends JFrame implements ActionListener {
 		jp.add(starButton);
 //		StringButton stringButton = new StringButton(stateManager);
 //		jp.add(stringButton);
-		ShadowedButton shadowedButton = new ShadowedButton(stateManager);
-		jp.add(shadowedButton);
 		SelectedButton selectedButton = new SelectedButton(stateManager);
-		jp.add(selectedButton);
+		selectedButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, selectedButton.getMinimumSize().height));
+		jp2.add(selectedButton);
+		ShadowedButton shadowedButton = new ShadowedButton(stateManager);
+		shadowedButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, shadowedButton.getMinimumSize().height));
+		jp2.add(shadowedButton);
 		DeleteButton deleteButton = new DeleteButton(stateManager);
-		jp.add(deleteButton);
+		deleteButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, deleteButton.getMinimumSize().height));
+		jp2.add(deleteButton);
 		CopyButton copyButton = new CopyButton(stateManager);
-		jp.add(copyButton);
+		copyButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, copyButton.getMinimumSize().height));
+		jp2.add(copyButton);
 		CutButton cutButton = new CutButton(stateManager);
-		jp.add(cutButton);
+		cutButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, cutButton.getMinimumSize().height));
+		jp2.add(cutButton);
 		PasteButton pasteButton = new PasteButton(stateManager);
-		jp.add(pasteButton);
+		pasteButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, pasteButton.getMinimumSize().height));
+		jp2.add(pasteButton);
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -101,15 +114,16 @@ public class MyApp extends JFrame implements ActionListener {
 		otherWidth.addActionListener(this);
 		menuBar.add(lineWidthMenu);
 		
-		IO = new JMenu("Read/Load");
+		IO = new JMenu("Save/Load");
 		read = new IOMenu(stateManager, "Load File");
 		load = new IOMenu(stateManager, "Save File");
-		IO.add(read);
 		IO.add(load);
+		IO.add(read);
 		menuBar.add(IO);
 		
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(jp, BorderLayout.NORTH);
+		getContentPane().add(jp2, BorderLayout.WEST); 
 		getContentPane().add(canvas, BorderLayout.CENTER);
 		
 		canvas.addMouseListener(new MouseAdapter() {

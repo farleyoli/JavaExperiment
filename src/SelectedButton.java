@@ -60,7 +60,6 @@ class SelectedState extends State {
 				else {
 					med.unselectAll();
 					med.setSelected(drawing);
-					System.out.println("unselectAll");
 				}
 				drawing.setX0(x);
 				drawing.setY0(y);
@@ -84,7 +83,6 @@ class SelectedState extends State {
 			if(rect.getW() < 0) {
 				rect.setX(rect.getX() + rect.getW());
 				rect.setW(-rect.getW());
-				System.out.println("W: " + rect.getW());
 			}
 			if(rect.getH() < 0) {
 				rect.setY(rect.getY() + rect.getH());
@@ -96,7 +94,6 @@ class SelectedState extends State {
 				yIntersection = !(rect.getY() + rect.getH() < d.getY() || d.getY() + d.getY() < rect.getY());
 				
 				if(xIntersection && yIntersection) {
-					System.out.println("lel");
 					med.setSelected(d);
 				}
 			
@@ -124,7 +121,6 @@ class SelectedState extends State {
 			if(med.getSelectedDrawing() == null) // no figures selected
 				return;
 			Vector<MyDrawing> sDrawings = med.getSelectedDrawings();
-			System.out.println(sDrawings.size());
 			int dx = 0, dy = 0;
 			//for(MyDrawing d : sDrawings) {
 			//	if(d == drawing) { //will fix this later, so the click has to be in some selected figure
