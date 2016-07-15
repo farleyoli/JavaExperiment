@@ -13,8 +13,8 @@ public class MyApp extends JFrame implements ActionListener {
 	private JMenu lineColorMenu;
 	private JMenu lineWidthMenu;
 	private JMenu IO;
-	private JMenuItem redItem, blueItem, greenItem, whiteItem, blackItem, yellowItem, otherFillColor;
-	private JMenuItem lineRed, lineBlue, lineGreen, lineWhite, lineBlack, lineYellow, otherLineColor;
+	private JMenuItem redItem, blueItem, greenItem, whiteItem, blackItem, yellowItem, otherFillColor, spotFillColor;
+	private JMenuItem lineRed, lineBlue, lineGreen, lineWhite, lineBlack, lineYellow, otherLineColor, spotLineColor;
 	private JMenuItem width1, width2, width3, width4, width5, otherWidth;
 	private JMenuItem read, load;
 	
@@ -73,6 +73,7 @@ public class MyApp extends JFrame implements ActionListener {
 		whiteItem = new FillColorMenu(stateManager, "White", Color.white);
 		blackItem = new FillColorMenu(stateManager, "Black", Color.black);
 		yellowItem = new FillColorMenu(stateManager, "Yellow", Color.yellow);
+		spotFillColor = new JMenuItem("Spot Color");
 		otherFillColor = new JMenuItem("Other Colors");
 		colorMenu.add(redItem);
 		colorMenu.add(blueItem);
@@ -80,8 +81,10 @@ public class MyApp extends JFrame implements ActionListener {
 		colorMenu.add(whiteItem);
 		colorMenu.add(blackItem);
 		colorMenu.add(yellowItem);
+		colorMenu.add(spotFillColor);
 		colorMenu.add(otherFillColor);
 		otherFillColor.addActionListener(this);
+		spotFillColor.addActionListener(this);
 		menuBar.add(colorMenu);
 		
 		lineColorMenu = new JMenu("Line Color");
@@ -91,6 +94,7 @@ public class MyApp extends JFrame implements ActionListener {
 		lineWhite = new LineColorMenu(stateManager, "White", Color.white);
 		lineBlack = new LineColorMenu(stateManager, "Black", Color.black);
 		lineYellow = new LineColorMenu(stateManager, "Yellow", Color.yellow);
+		spotLineColor = new JMenuItem("Spot Color");
 		otherLineColor = new JMenuItem("Other Colors");
 		lineColorMenu.add(lineRed);
 		lineColorMenu.add(lineBlue);
@@ -98,7 +102,9 @@ public class MyApp extends JFrame implements ActionListener {
 		lineColorMenu.add(lineWhite);
 		lineColorMenu.add(lineBlack);
 		lineColorMenu.add(lineYellow);
+		lineColorMenu.add(spotLineColor);
 		lineColorMenu.add(otherLineColor);
+		spotLineColor.addActionListener(this);
 		otherLineColor.addActionListener(this);
 		menuBar.add(lineColorMenu);
 		
@@ -170,6 +176,13 @@ public class MyApp extends JFrame implements ActionListener {
 		else if(e.getSource() == otherLineColor) {
 			Color color = JColorChooser.showDialog(this, "Choose color", Color.white);
 			med.setLineColor(color);
+		}
+		else if(e.getSource() == spotFillColor) {
+			System.out.println("Te");
+			stateManager.setState(new SpotState(stateManager, true));
+		}
+		else if(e.getSource() == spotLineColor) {
+			stateManager.setState(new SpotState(stateManager, false));
 		}
 		else {
 			String input = null;
