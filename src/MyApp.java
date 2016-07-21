@@ -13,10 +13,12 @@ public class MyApp extends JFrame implements ActionListener {
 	private JMenu lineColorMenu;
 	private JMenu lineWidthMenu;
 	private JMenu IO;
+	private JMenu order;
 	private JMenuItem redItem, blueItem, greenItem, whiteItem, blackItem, yellowItem, otherFillColor, spotFillColor;
 	private JMenuItem lineRed, lineBlue, lineGreen, lineWhite, lineBlack, lineYellow, otherLineColor, spotLineColor;
 	private JMenuItem width1, width2, width3, width4, width5, otherWidth;
 	private JMenuItem read, load;
+	private JMenuItem oneBack, oneFront, allBack, allFront;
 	
 	public MyApp() {
 		super("My App!");
@@ -120,6 +122,17 @@ public class MyApp extends JFrame implements ActionListener {
 		otherWidth.addActionListener(this);
 		menuBar.add(lineWidthMenu);
 		
+		order = new JMenu("Change Order");
+		oneBack = new OrderMenu(stateManager, "Move one position back");
+		oneFront = new OrderMenu(stateManager, "Move one position to the front");
+		allBack = new OrderMenu(stateManager, "Move to the background");
+		allFront = new OrderMenu(stateManager, "Move to the surface");
+		order.add(oneBack);
+		order.add(oneFront);
+		order.add(allBack);
+		order.add(allFront);
+		menuBar.add(order);
+		
 		IO = new JMenu("Save/Load");
 		read = new IOMenu(stateManager, "Load File");
 		load = new IOMenu(stateManager, "Save File");
@@ -178,7 +191,6 @@ public class MyApp extends JFrame implements ActionListener {
 			med.setLineColor(color);
 		}
 		else if(e.getSource() == spotFillColor) {
-			System.out.println("Te");
 			stateManager.setState(new SpotState(stateManager, true));
 		}
 		else if(e.getSource() == spotLineColor) {
@@ -188,6 +200,7 @@ public class MyApp extends JFrame implements ActionListener {
 			String input = null;
 			input = JOptionPane.showInputDialog("Choose Width (1~10)");
 			if(input.matches("\\d+")) {
+				//only accepting integers
 				int width = Integer.parseInt(input);
 				if(width >= 1 && width <= 10)
 					med.setLineWidth(width);

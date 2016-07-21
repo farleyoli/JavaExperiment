@@ -6,21 +6,20 @@ import java.awt.Robot;
 public class SpotState extends State {
 	StateManager stateManager;
 	Mediator med;
-	boolean isFill;
+	boolean isFillColor;
 	
-	public SpotState(StateManager stateManager, boolean isFill) {
+	public SpotState(StateManager stateManager, boolean isFillColor) {
 		this.stateManager = stateManager;
 		this.med = stateManager.getCanvas().getMediator();
-		this.isFill = isFill;
+		this.isFillColor = isFillColor;
 	}
 	
 	public void mouseDown(int x, int y) {
 		//get color of the pixel x, y;
-		System.out.println("test");
 		try {
 			Robot robot = new Robot();
 			Color color = robot.getPixelColor((int) MouseInfo.getPointerInfo().getLocation().getX(), (int) MouseInfo.getPointerInfo().getLocation().getY());
-			if(isFill) { med.setColor(color); } else med.setLineColor(color);
+			if(isFillColor) { med.setColor(color); } else med.setLineColor(color);
 		} catch (AWTException e) {
 			// TODO Auto-generated catch block
 		}
