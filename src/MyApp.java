@@ -45,6 +45,8 @@ public class MyApp extends JFrame implements ActionListener {
 		jp.add(ovalButton);
 		StarButton starButton = new StarButton(stateManager);
 		jp.add(starButton);
+		KochButton kochButton = new KochButton(stateManager);
+		jp.add(kochButton);
 //		StringButton stringButton = new StringButton(stateManager);
 //		jp.add(stringButton);
 		SelectedButton selectedButton = new SelectedButton(stateManager);
