@@ -16,7 +16,15 @@ public class MyKoch extends MyDrawing {
 	public MyKoch(int x, int y, int w, int h, Color lineColor, Color fillColor, int lineWidth) {
 		super(x, y, w, h, lineColor, fillColor, lineWidth);
 		//if(numOfIter > 0) setH((int) (getH() - getH()*Math.sqrt(5)/6) * 0);
-		numOfIter = 4;
+		numOfIter = 7;
+		setPoints(numOfIter);
+		setRegion();
+	}
+	
+	public MyKoch(int x, int y, int w, int h, Color lineColor, Color fillColor, int lineWidth, int numOfIter) {
+		super(x, y, w, h, lineColor, fillColor, lineWidth);
+		//if(numOfIter > 0) setH((int) (getH() - getH()*Math.sqrt(5)/6) * 0);
+		this.numOfIter = numOfIter;
 		setPoints(numOfIter);
 		setRegion();
 	}
@@ -61,7 +69,6 @@ public class MyKoch extends MyDrawing {
 			yPointsD = new double[numOfSides];
 			
 			for(int i = 0; i < numOfSidesBefore; i++) {
-				System.out.println(i + " " + numOfSides);
 				xPointsD[4*i] = xPointsDB[i];
 				yPointsD[4*i] = yPointsDB[i];
 				
@@ -85,7 +92,6 @@ public class MyKoch extends MyDrawing {
 						(Math.sqrt((nextXPointsDB - xPointsDB[i])*(nextXPointsDB - xPointsDB[i]) +
 								(nextYPointsDB - yPointsDB[i])*(nextYPointsDB - yPointsDB[i]))/3.0) *
 						Math.cos(angAB + Math.PI/3.0); 
-				System.out.println(xPointsD[4*i + 2]);
 				
 				yPointsD[4*i + 2] = yPointsD[4*i + 1] + 
 						(Math.sqrt((nextXPointsDB - xPointsDB[i])*(nextXPointsDB - xPointsDB[i]) +

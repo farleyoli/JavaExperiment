@@ -16,7 +16,16 @@ public class KochButton extends JButton {
 	
 	class KochListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			stateManager.setState(new KochState(stateManager));
+			int numOfIter = 1;
+			String input = null;
+			input = JOptionPane.showInputDialog("Choose Number of Iterations (1~7)");
+			if(input.matches("\\d+")) {
+				//only accepting integers
+				int num = Integer.parseInt(input);
+				if(num >= 1 && num <= 7)
+					numOfIter = num;
+			}
+			stateManager.setState(new KochState(stateManager, numOfIter));
 		}
 	}
 
@@ -24,14 +33,17 @@ public class KochButton extends JButton {
 
 class KochState extends State {
 	StateManager stateManager;
+	int numOfIter;
 	
-	public KochState(StateManager stateManager) {
+	public KochState(StateManager stateManager, int numOfIter) {
 		this.stateManager = stateManager;
+		this.numOfIter = numOfIter;
 	}
 	
 	public void mouseDown(int x, int y) {
-		MyKoch myKoch = new MyKoch(x, y, 0, 0, Color.black, Color.white, 1);
-		Vector<MyDrawing> vecD = new Vector<MyDrawing>(stateManager.getCanvas().getMediator().getDrawings());
+		Mediator med = stateManager.getCanvas().getMediator();
+		MyKoch myKoch = new MyKoch(x, y, 0, 0, Color.black, Color.white, 1, numOfIter);
+		Vector<MyDrawing> vecD = new Vector<MyDrawing>(med.getDrawings());
 		//select only one of the figures
 		for(MyDrawing drawing : vecD) {
 			drawing.setSelected(false);
