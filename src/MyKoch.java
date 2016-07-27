@@ -119,7 +119,7 @@ public class MyKoch extends MyDrawing {
 	
 	public MyKoch clone() {
 		MyKoch clone = new MyKoch(getX(), getY(), getW(), getH(),
-				getLineColor(), getFillColor(), getLineWidth());
+				getLineColor(), getFillColor(), getLineWidth(), numOfIter);
 		if(this.isShadowed())
 			clone.setShadowed(true);
 		if(this.isDashed())
