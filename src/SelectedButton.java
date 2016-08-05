@@ -80,6 +80,7 @@ class SelectedState extends State {
 	public void mouseUp(int x, int y){
 		Vector<MyDrawing> drawings = med.getDrawings();
 		if(rect != null && !drawings.isEmpty()) {
+			
 			if(rect.getW() < 0) {
 				rect.setX(rect.getX() + rect.getW());
 				rect.setW(-rect.getW());
@@ -89,9 +90,25 @@ class SelectedState extends State {
 				rect.setH(-rect.getH());
 			}
 			for(MyDrawing d : drawings) {
+				int dx = d.getX();
+				int dy = d.getY();
+				int dh = d.getH();
+				int dw = d.getW();
+			
+				if(dw < 0) {
+					dx = dx + dw;
+					dw = -dw;
+				}
+				
+				if(dh < 0) {
+					dy = dy + dh;
+					dh = -dh;
+				}
+				
+				
 				boolean xIntersection, yIntersection; // the intersection is not empty (true or false)
-				xIntersection = !(rect.getX() + rect.getW() < d.getX() || d.getX() + d.getW() < rect.getX());
-				yIntersection = !(rect.getY() + rect.getH() < d.getY() || d.getY() + d.getY() < rect.getY());
+				xIntersection = !(rect.getX() + rect.getW() < dx || dx + dw < rect.getX());
+				yIntersection = !(rect.getY() + rect.getH() < dy || dy + dh < rect.getY());
 				
 				if(xIntersection && yIntersection) {
 					med.setSelected(d);
