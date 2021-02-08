@@ -9,7 +9,7 @@ Kikagaku Penki is a simple graphics editor.
 Kikagaku Penki:
 - supports the creation of geometrical figures such as lines, rectangles and Koch snowflakes.
 - supports multi-layered editing.
-- allows user to save his/her in a file and load the saved work at a later time.
+- allows user to save his/her work in a file and load it at a later time.
 
 ## Installation
 To install Kikagaku Penki, first clone this repository:
@@ -23,7 +23,7 @@ cd src
 javac *.java
 ```
 
-Run the program:
+Finally, run the program:
 ```sh
 java MyApp
 ```
